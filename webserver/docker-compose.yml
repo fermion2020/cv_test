@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    nginx:
+        image: nginx:latest
+        ports:
+            - "9080:80"
+        volumes:
+            - ./config:/etc/nginx/conf.d
+            - ./data:/var/www
+            - ./logs:/var/log/nginx
+        links:
+            - php
+    php:
+        image: php-fpm:latest
+        volumes:
+            - ./data:/var/www
